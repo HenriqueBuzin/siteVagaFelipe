@@ -1,0 +1,12 @@
+div#buttons > span {
+    margin-left: 5px;
+}
+button.btn-width {
+    width: 100%;
+}
+button.btn-margin {
+    margin-top: 25px;
+}
+.form-group {
+    margin-top: 25px;
+}

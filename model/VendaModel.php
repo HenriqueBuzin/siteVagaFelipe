@@ -1,8 +1,6 @@
 <?php
     class VendaModel
     {
-        private $idVenda;
-
         private $idCliente;
 
         private $nome;

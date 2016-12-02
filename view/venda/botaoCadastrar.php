@@ -1,9 +1,7 @@
 <?php
+    function botaoCadastrar() {
 
-    public function botaoCadastrar() {
-
-        return "controller/VendaController.php";
+        return "/view/venda/listar.php?controller=venda&action=cadastrar";
 
     }
-
 ?>

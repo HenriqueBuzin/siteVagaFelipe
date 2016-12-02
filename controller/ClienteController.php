@@ -9,17 +9,15 @@
 
             $this->clienteDAO = new ClienteDAO();
 
-            $this->clienteDAO = new ClienteModel();
+            $this->clienteModel = new ClienteModel();
 
         }
 
-        public function editar()
+        public function editarAction()
         {
 
-            if ((!empty(filter_input(INPUT_POST, 'idCliente'))) || (!empty(filter_input(INPUT_POST, 'nomeMae')))  || (!empty(filter_input(INPUT_POST, 'dataNascimento'))) || (!empty(filter_input(INPUT_POST, 'logradouro'))) || (!empty(filter_input(INPUT_POST, 'cep'))) || (!empty(filter_input(INPUT_POST, 'bairro'))) || (!empty(filter_input(INPUT_POST, 'estado'))) || (!empty(filter_input(INPUT_POST, 'cidade'))) || (!empty(filter_input(INPUT_POST, 'numero'))) || (!empty(filter_input(INPUT_POST, 'complemento'))))
+            if ((!empty(filter_input(INPUT_POST, 'nomeMae')))  || (!empty(filter_input(INPUT_POST, 'dataNascimento'))) || (!empty(filter_input(INPUT_POST, 'logradouro'))) || (!empty(filter_input(INPUT_POST, 'cep'))) || (!empty(filter_input(INPUT_POST, 'bairro'))) || (!empty(filter_input(INPUT_POST, 'estado'))) || (!empty(filter_input(INPUT_POST, 'cidade'))) || (!empty(filter_input(INPUT_POST, 'numero'))) || (!empty(filter_input(INPUT_POST, 'complemento'))))
             {
-
-                $idCliente = addslashes(filter_input(INPUT_POST, 'idCliente'));
 
                 $nomeMae = addslashes(filter_input(INPUT_POST, 'nomeMae'));
 
@@ -59,30 +57,40 @@
 
                 $this->clienteModel->setComplemento($complemento);
 
-                $this->clienteDAO->editar($this->clienteModel);
+                $retorno = $this->clienteDAO->editar($this->clienteModel);
+
+                if ($retorno) {
+
+                    return true;
+
+                } else {
+
+                    return false;
+
+                    die();
+
+                }
 
             }
 
         }
 
-        public function visualizar()
+        public function visualizarAction()
         {
 
-            $dados = new array();
+            $cliente = array();
 
-            $dados = $this->clienteDAO->visualizar();
+            $cliente = $this->clienteDAO->visualizar();
 
-            return $dados;
+            return $cliente;
 
         }
 
-        public function destruir()
+        public function destruirAction()
         {
 
-            if ((!empty(filter_input(INPUT_POST, 'idCliente'))) || (!empty(filter_input(INPUT_POST, 'nomeMae')))  || (!empty(filter_input(INPUT_POST, 'dataNascimento'))) || (!empty(filter_input(INPUT_POST, 'logradouro'))) || (!empty(filter_input(INPUT_POST, 'cep'))) || (!empty(filter_input(INPUT_POST, 'bairro'))) || (!empty(filter_input(INPUT_POST, 'estado'))) || (!empty(filter_input(INPUT_POST, 'cidade'))) || (!empty(filter_input(INPUT_POST, 'numero'))) || (!empty(filter_input(INPUT_POST, 'complemento'))))
+            if ((!empty(filter_input(INPUT_POST, 'nomeMae')))  || (!empty(filter_input(INPUT_POST, 'dataNascimento'))) || (!empty(filter_input(INPUT_POST, 'logradouro'))) || (!empty(filter_input(INPUT_POST, 'cep'))) || (!empty(filter_input(INPUT_POST, 'bairro'))) || (!empty(filter_input(INPUT_POST, 'estado'))) || (!empty(filter_input(INPUT_POST, 'cidade'))) || (!empty(filter_input(INPUT_POST, 'numero'))) || (!empty(filter_input(INPUT_POST, 'complemento'))))
             {
-
-                $idCliente = addslashes(filter_input(INPUT_POST, 'idCliente'));
 
                 $nomeMae = addslashes(filter_input(INPUT_POST, 'nomeMae'));
 
@@ -122,19 +130,29 @@
 
                 $this->clienteModel->setComplemento($complemento);
 
-                $this->clienteDAO->destruir($this->clienteModel);
+                $retorno = $this->clienteDAO->destruir($this->clienteModel);
+
+                if ($retorno) {
+
+                    return true;
+
+                } else {
+
+                    return false;
+
+                    die();
+
+                }
 
             }
 
         }
 
-        public function selecionar()
+        public function selecionarAction()
         {
 
-            if ((!empty(filter_input(INPUT_POST, 'idCliente'))) || (!empty(filter_input(INPUT_POST, 'nomeMae')))  || (!empty(filter_input(INPUT_POST, 'dataNascimento'))) || (!empty(filter_input(INPUT_POST, 'logradouro'))) || (!empty(filter_input(INPUT_POST, 'cep'))) || (!empty(filter_input(INPUT_POST, 'bairro'))) || (!empty(filter_input(INPUT_POST, 'estado'))) || (!empty(filter_input(INPUT_POST, 'cidade'))) || (!empty(filter_input(INPUT_POST, 'numero'))) || (!empty(filter_input(INPUT_POST, 'complemento'))))
+            if ((!empty(filter_input(INPUT_POST, 'nomeMae')))  || (!empty(filter_input(INPUT_POST, 'dataNascimento'))) || (!empty(filter_input(INPUT_POST, 'logradouro'))) || (!empty(filter_input(INPUT_POST, 'cep'))) || (!empty(filter_input(INPUT_POST, 'bairro'))) || (!empty(filter_input(INPUT_POST, 'estado'))) || (!empty(filter_input(INPUT_POST, 'cidade'))) || (!empty(filter_input(INPUT_POST, 'numero'))) || (!empty(filter_input(INPUT_POST, 'complemento'))))
             {
-
-                $idCliente = addslashes(filter_input(INPUT_POST, 'idCliente'));
 
                 $nomeMae = addslashes(filter_input(INPUT_POST, 'nomeMae'));
 
@@ -174,7 +192,21 @@
 
                 $this->clienteModel->setComplemento($complemento);
 
-                $this->clienteDAO->selecionar($this->clienteModel);
+                $retorno = $this->clienteDAO->selecionar($this->clienteModel);
+
+                $retorno = $this->advogadoDAO->selecionar($url);
+
+                if ($retorno) {
+
+                    return $retorno;
+
+                } else {
+
+                    return false;
+
+                    die();
+
+                }
 
             }
 

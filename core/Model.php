@@ -3,25 +3,25 @@
     class Model
 
     {
-        private $config = array();
-
         protected $db;
 
         function __construct() {
 
-            $this->$config['dbname'] = "vaga";
+            $config = array();
 
-            $this->$config['host'] = "localhost";
+            $config['dbname'] = "vaga";
 
-            $this->$config['charset'] = "utf8";
+            $config['host'] = "localhost";
 
-            $this->$config['dbuser'] = "root";
+            $config['charset'] = "utf8";
 
-            $this->$config['pass'] = "root";
+            $config['dbuser'] = "root";
+
+            $config['pass'] = "root";
 
             try {
 
-                $this->db = new PDO("mysql:dbname=" . $this->$config['dbname'] . ";host=" . $this->$config['host'] . ";charset=" . $this->$config['charset'], $this->$config['dbuser'], $this->$config['pass']);
+                $this->db = new PDO("mysql:dbname=" . $config['dbname'] . ";host=" . $config['host'] . ";charset=" . $config['charset'], $config['dbuser'], $config['pass']);
 
                 $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

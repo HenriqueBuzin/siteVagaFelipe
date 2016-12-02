@@ -62,7 +62,20 @@
 
                 $this->vendaModel->setCheckbox($checkbox);
 
-                $this->vendaDAO->editar($this->vendaModel);
+                $retorno = $this->vendaDAO->editar($this->vendaModel);
+
+                if ($retorno) {
+
+                    return true;
+
+                } else {
+
+                    return false;
+
+                    die();
+
+                }
+
 
             }
 
@@ -126,7 +139,19 @@
 
                 $this->vendaModel->setCheckbox($checkbox);
 
-                $this->vendaDAO->destruir($this->vendaModel);
+                $retorno = $this->vendaDAO->destruir($this->vendaModel);
+
+                if ($retorno) {
+
+                    return true;
+
+                } else {
+
+                    return false;
+
+                    die();
+
+                }
 
             }
 
@@ -179,7 +204,19 @@
 
                 $this->vendaModel->setCheckbox($checkbox);
 
-                $this->vendaDAO->selecionar($this->vendaModel);
+                $retorno = $this->vendaDAO->selecionar($this->vendaModel);
+
+                if ($retorno) {
+
+                    return true;
+
+                } else {
+
+                    return false;
+
+                    die();
+
+                }
 
             }
 

@@ -9,5 +9,8 @@
         }else{
             header("./inicio.php");
         }
+    }else{
+        header("./inicio.php");
     }
+    echo 1;
 ?>

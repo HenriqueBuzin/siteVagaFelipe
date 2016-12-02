@@ -1,5 +1,5 @@
 <?php
-    // $controller = new VendaController();
-    // $controller->visualizarAction();
+    $controller = new VendaController();
+    $controller->visualizarAction();
     echo 2;
 ?>

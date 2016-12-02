@@ -62,6 +62,7 @@
                 if ($retorno) {
 
                     return true;
+                    header("Location: /view/cliente/cliente.php");
 
                 } else {
 
@@ -70,6 +71,8 @@
                     die();
 
                 }
+
+                include "view/cliente/editar.php";
 
             }
 
@@ -82,69 +85,26 @@
 
             $cliente = $this->clienteDAO->visualizar();
 
-            return $cliente;
+            include "view/cliente/listar.php";
 
         }
 
         public function destruirAction()
         {
 
-            if ((!empty(filter_input(INPUT_POST, 'nomeMae')))  || (!empty(filter_input(INPUT_POST, 'dataNascimento'))) || (!empty(filter_input(INPUT_POST, 'logradouro'))) || (!empty(filter_input(INPUT_POST, 'cep'))) || (!empty(filter_input(INPUT_POST, 'bairro'))) || (!empty(filter_input(INPUT_POST, 'estado'))) || (!empty(filter_input(INPUT_POST, 'cidade'))) || (!empty(filter_input(INPUT_POST, 'numero'))) || (!empty(filter_input(INPUT_POST, 'complemento'))))
-            {
+            $id = $_GET['id'];
 
-                $nomeMae = addslashes(filter_input(INPUT_POST, 'nomeMae'));
+            if (isset($_GET['confirmar'])) {
 
-                $dataNascimento = addslashes(filter_input(INPUT_POST, 'dataNascimento'));
+                $this->clienteDAO->excluir($id);
 
-                $logradouro = addslashes(filter_input(INPUT_POST, 'logradouro'));
-
-                $cep = addslashes(filter_input(INPUT_POST, 'cep'));
-
-                $bairro = addslashes(filter_input(INPUT_POST, 'bairro'));
-
-                $estado = addslashes(filter_input(INPUT_POST, 'estado'));
-
-                $cidade = addslashes(filter_input(INPUT_POST, 'cidade'));
-
-                $numero = addslashes(filter_input(INPUT_POST, 'numero'));
-
-                $complemento = addslashes(filter_input(INPUT_POST, 'complemento'));
-
-                $this->clienteModel->setIdCliente($idCliente);
-
-                $this->clienteModel->setNomeMae($nomeMae);
-
-                $this->clienteModel->setDataNascimento($dataNascimento);
-
-                $this->clienteModel->setLogradouro($logradouro);
-
-                $this->clienteModel->setCep($cep);
-
-                $this->clienteModel->setBairro($bairro);
-
-                $this->clienteModel->setEstado($estado);
-
-                $this->clienteModel->setCidade($cidade);
-
-                $this->clienteModel->setNumero($numero);
-
-                $this->clienteModel->setComplemento($complemento);
-
-                $retorno = $this->clienteDAO->destruir($this->clienteModel);
-
-                if ($retorno) {
-
-                    return true;
-
-                } else {
-
-                    return false;
-
-                    die();
-
-                }
+                header("location: index.php?control=Cliente&acao=listar");
 
             }
+
+            $dados = $this->clienteDAO->visualizar($id);
+
+            include "view/cliente/excluir.php";
 
         }
 
@@ -208,7 +168,70 @@
 
                 }
 
+                include "view/cliente/pesquisar.php";
+
             }
+
+        }
+
+        public function cadastrarAction()
+        {
+
+            if ((!empty(filter_input(INPUT_POST, 'nomeMae')))  || (!empty(filter_input(INPUT_POST, 'dataNascimento'))) || (!empty(filter_input(INPUT_POST, 'logradouro'))) || (!empty(filter_input(INPUT_POST, 'cep'))) || (!empty(filter_input(INPUT_POST, 'bairro'))) || (!empty(filter_input(INPUT_POST, 'estado'))) || (!empty(filter_input(INPUT_POST, 'cidade'))) || (!empty(filter_input(INPUT_POST, 'numero'))) || (!empty(filter_input(INPUT_POST, 'complemento'))))
+            {
+
+                $nomeMae = addslashes(filter_input(INPUT_POST, 'nomeMae'));
+
+                $dataNascimento = addslashes(filter_input(INPUT_POST, 'dataNascimento'));
+
+                $logradouro = addslashes(filter_input(INPUT_POST, 'logradouro'));
+
+                $cep = addslashes(filter_input(INPUT_POST, 'cep'));
+
+                $bairro = addslashes(filter_input(INPUT_POST, 'bairro'));
+
+                $estado = addslashes(filter_input(INPUT_POST, 'estado'));
+
+                $cidade = addslashes(filter_input(INPUT_POST, 'cidade'));
+
+                $numero = addslashes(filter_input(INPUT_POST, 'numero'));
+
+                $complemento = addslashes(filter_input(INPUT_POST, 'complemento'));
+
+                $this->clienteModel->setIdCliente($idCliente);
+
+                $this->clienteModel->setNomeMae($nomeMae);
+
+                $this->clienteModel->setDataNascimento($dataNascimento);
+
+                $this->clienteModel->setLogradouro($logradouro);
+
+                $this->clienteModel->setCep($cep);
+
+                $this->clienteModel->setBairro($bairro);
+
+                $this->clienteModel->setEstado($estado);
+
+                $this->clienteModel->setCidade($cidade);
+
+                $this->clienteModel->setNumero($numero);
+
+                $this->clienteModel->setComplemento($complemento);
+
+                $retorno = $this->clienteDAO->cadastrar($this->clienteModel);
+
+                if ($retorno) {
+
+                    header("location: ");
+
+                } else {
+                    echo "Erro";
+
+                }
+
+            }
+
+            include "view/cliente/cadastrar.php";
 
         }
 

@@ -1,9 +1,10 @@
 <?php
     interface CRUD
     {
-        public function editar(Object $obj);
+        public function editar($array);
         public function visualizar();
-        public function destruir(Object $obj);
-        public function selecionar(Object $obj);
+        public function destruir($url);
+        public function selecionar($url);
+        public function cadastrar(Object $obj);
     }
 ?>

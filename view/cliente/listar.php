@@ -1,13 +1,12 @@
 <?php
-    include("/controller/ClienteController.php");
-    include("./botaoCadastrar.php");
+    include "controller/ClienteController.php";
     if(!empty($_POST))
     {
         $controller = new ClienteController();
         $controller->visualizarAction();
     }
 ?>
-<a href="<?php botaoCadastrar(); ?>"><button>Popular</button></a>
+<a href="<?php echo botaoCadastrar(); ?>"><button>Popular</button></a>
 <table>
     <thead>
         <tr>

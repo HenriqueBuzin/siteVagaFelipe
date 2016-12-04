@@ -1,4 +1,6 @@
 <?php
+    include "core/CRUD.php";
+    include "core/Model.php";
     class ClienteDAO extends Model implements CRUD
     {
         public function editar($array = array()) {
@@ -113,7 +115,7 @@
             return $array;
 
         }
-        public function cadastrar(Cliente $obj) {
+        public function cadastrar($obj) {
 
             try {
 
@@ -121,11 +123,11 @@
 
                 $sql = $this->db->prepare($sql);
 
-                foreach ($array as $valor => $campo) {
+                /*foreach ($array as $valor => $campo) {
 
                     $sql->bindValue(":" . $valor, $campo);
 
-                }
+                }*/
 
                 $sql->execute();
 

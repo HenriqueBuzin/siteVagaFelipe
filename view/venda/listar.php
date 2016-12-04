@@ -1,14 +1,10 @@
 <?php
-    include("./botaoCadastrar.php");
-    include("/controller/VendaController.php");
-    if(!empty($_POST))
-    {
-        $controller = new VendaController();
-        $controller->visualizarAction();
-    }
+    error_reporting(-1);
+    ini_set('display_errors', 'On');
+    include "botaoCadastrar.php";
 ?>
-<a href="<?php botaoCadastrar(); ?>"><button>Popular</button></a>
-<table>
+<a href="<?php echo botaoCadastrar(); ?>"><button>Popular</button></a>
+<table class="table">
     <thead>
         <tr>
             <th>Cliente</th>
@@ -24,7 +20,7 @@
         </tr>
         </thead>
         <tbody>
-            <?php foreach($venda as $venda): ?>
+            <?php foreach($vendas as $venda): ?>
                 <tr>
                     <td><?php echo $venda["idCliente"]; ?></td>
                     <td><?php echo $venda["nome"]; ?></td>

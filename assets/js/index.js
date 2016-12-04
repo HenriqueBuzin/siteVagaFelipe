@@ -1,9 +1,3 @@
 jQuery(document).ready(function(){
 
-
-
-
-
-
-
 });

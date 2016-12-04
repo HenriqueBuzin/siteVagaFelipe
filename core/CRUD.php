@@ -5,6 +5,6 @@
         public function visualizar();
         public function destruir($url);
         public function selecionar($url);
-        public function cadastrar(Object $obj);
+        public function cadastrar($obj);
     }
 ?>

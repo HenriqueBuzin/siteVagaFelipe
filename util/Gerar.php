@@ -1,4 +1,6 @@
 <?php
+    error_reporting(-1);
+    ini_set('display_errors', 'On');
     class Gerar
     {
         public static function nome()
@@ -56,7 +58,8 @@
         }
         public static function numero()
         {
-
+            $numero = mt_rand(0, 9999);
+            return $numero;
 
         }
         public static function complemento()
@@ -72,19 +75,72 @@
         public static function email()
         {
 
+            $tamanho = mt_rand(8, 40);
+
+            $all_str = "abcdefghijlkmnopqrstuvxyzw";
+
+            $email = "";
+
+            for ($i = 0;$i <= $tamanho;$i++){
+
+                $email .= $all_str[mt_rand(0,25)];
+
+            }
+
+            $email .= "@";
+
+            $tamanho = mt_rand(4, 20);
+
+            $all_str = "abcdefghijlkmnopqrstuvxyzw";
+
+            $email = "";
+
+            for ($i = 0;$i <= $tamanho;$i++){
+
+                $email .= $all_str[mt_rand(0,25)];
+
+            }
+
+            $email .= ".";
+
+            $tamanho = mt_rand(2, 3);
+
+            $all_str = "abcdefghijlkmnopqrstuvxyzw";
+
+            $email = "";
+
+            for ($i = 0;$i <= $tamanho;$i++){
+
+                $email .= $all_str[mt_rand(0,25)];
+
+            }
+
+            return $email;
 
         }
         public static function parcelas()
         {
-
-
+            $parcelas = mt_rand(2, 72);
+            return $parcelas;
         }
         public static function valorParcelas()
         {
 
+            $valorParcelas = mt_rand(2, 72);
+
+            $valorParcelas = ".";
+
+            $valorParcelas = mt_rand(00, 99);
+
+            return $valorParcelas;
 
         }
         public static function valorTotal()
+        {
+
+
+        }
+        public static function fone()
         {
 
 

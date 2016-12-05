@@ -3,16 +3,18 @@
 
     ini_set('display_errors', 'On');
 
-    include "model/ClienteModel.php";
-
     include "dao/ClienteDAO.php";
+
+    include "model/ClienteModel.php";
 
     class ClienteController
     {
+
         private $clienteDAO;
+
         private $clienteModel;
 
-         function __construct()
+        function __construct()
         {
 
             $this->clienteDAO = new ClienteDAO();
@@ -89,9 +91,9 @@
         public function visualizarAction()
         {
 
-            $cliente = array();
+            $clientes = array();
 
-            $cliente = $this->clienteDAO->visualizar();
+            $clientes = $this->clienteDAO->visualizar();
 
             include "view/cliente/listar.php";
 
@@ -100,17 +102,13 @@
         public function destruirAction()
         {
 
-            $id = $_GET['id'];
+            if ((!empty(filter_input(INPUT_GET, 'idCliente')))){
 
-            if (isset($_GET['confirmar'])) {
+                $idCliente = addslashes(filter_input(INPUT_GET, 'idCliente'));
 
-                $this->clienteDAO->excluir($id);
-
-                header("location: index.php?control=Cliente&acao=listar");
+                $retorno = $this->clienteDAO->destruir($idCliente);
 
             }
-
-            $dados = $this->clienteDAO->visualizar($id);
 
             include "view/cliente/excluir.php";
 
@@ -230,7 +228,7 @@
 
                 if ($retorno) {
 
-                    header("location: ");
+                    //header("location: ");
 
                 } else {
                     echo "Erro";

@@ -17,6 +17,6 @@
             $_POST["checkbox"] = Gerar::checkbox();
             header("Location: ");
         }*/
-        return "index.php?controller=venda&action=cadastrar";
+        return "?controller=venda&action=cadastrar";
     }
 ?>

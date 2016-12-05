@@ -1,38 +1,48 @@
 <?php
-    include "controller/ClienteController.php";
-    if(!empty($_POST))
-    {
-        $controller = new ClienteController();
-        $controller->visualizarAction();
-    }
+    error_reporting(-1);
+
+    ini_set('display_errors', 'On');
+
+    include "botaoCadastrar.php";
+
+    include "util/Validar.php";
+
 ?>
 <a href="<?php echo botaoCadastrar(); ?>"><button>Popular</button></a>
-<table>
+<table class="table">
     <thead>
         <tr>
-            <td>Nome da Mãe</td>
-            <td>Data de Nascimento</td>
-            <td>Logradouro</td>
-            <td>CEP</td>
-            <td>Bairro</td>
-            <td>Cidade</td>
-            <td>Estado</td>
-            <td>Número</td>
-            <td>Complemento</td>
+            <th>Nome da Mãe</th>
+            <th>Data de Nascimento</th>
+            <th>Logradouro</th>
+            <th>CEP</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>Número</th>
+            <th>Complemento</th>
+            <th>Editar</th>
+            <th>Excluir</th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach($cliente as $cliente): ?>
+        <?php foreach($clientes as $cliente): ?>
             <tr>
                 <td><?php echo $cliente["nomeMae"]; ?></td>
-                <td><?php echo $cliente["dataNascimento"]; ?></td>
+                <td><?php echo Validar::date($cliente["dataNascimento"]); ?></td>
                 <td><?php echo $cliente["logradouro"]; ?></td>
-                <td><?php echo $cliente["cep"]; ?></td>
+                <td><?php echo Validar::cep($cliente["cep"]); ?></td>
                 <td><?php echo $cliente["bairro"]; ?></td>
                 <td><?php echo $cliente["cidade"]; ?></td>
                 <td><?php echo $cliente["estado"]; ?></td>
                 <td><?php echo $cliente["numero"]; ?></td>
                 <td><?php echo $cliente["complemento"]; ?></td>
+                <td>
+                    <a href="?controller=cliente&action=editar">Editar</a>
+                </td>
+                <td>
+                    <a href="?controller=cliente&action=destruir&idCliente=<?php echo $cliente["idCliente"]; ?>">Excluir</a>
+                </td>
             </tr>
         <?php endforeach; ?>
     </tbody>

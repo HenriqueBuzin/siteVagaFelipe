@@ -1,21 +1,43 @@
 <?php
+
+    error_reporting(-1);
+
+    ini_set('display_errors', 'On');
+
     include "core/CRUD.php";
+
     include "core/Model.php";
+
     class ClienteDAO extends Model implements CRUD
+
     {
-        public function editar($array = array()) {
+        public function editar($obj) {
 
             try {
 
-                $sql = "UPDATE endereco SET rua = :rua, cidade = :cidade, complemento = :complemento, telefone = :telefone WHERE idVenda = :idVenda";
+                $sql = "UPDATE endereco SET nomeMae = :nomeMae, dataNascimento = :dataNascimento, logradouro = :logradouro, cep = :cep, bairro = :bairro, estado = :estado, cidade = :cidade, numero = :numero, complemento = :complemento WHERE idCliente = :idCliente";
 
                 $sql = $this->db->prepare($sql);
 
-                foreach ($array as $valor => $campo){
+                $sql->bindValue(":idCliente", $obj->getIdCliente());
 
-                    $sql->bindValue(":" . $valor, $campo);
+                $sql->bindValue(":nomeMae", $obj->getNomeMae());
 
-                }
+                $sql->bindValue(":dataNascimento", $obj->getDataNascimento());
+
+                $sql->bindValue(":logradouro", $obj->getLogradouro());
+
+                $sql->bindValue(":cep", $obj->getCep());
+
+                $sql->bindValue(":bairro", $obj->getBairro());
+
+                $sql->bindValue(":estado", $obj->getEstado());
+
+                $sql->bindValue(":cidade", $obj->getCidade());
+
+                $sql->bindValue(":numero", $obj->getNumero());
+
+                $sql->bindValue(":complemento", $obj->getComplemento());
 
                 $sql->execute();
 
@@ -65,11 +87,11 @@
 
             try {
 
-                $sql = "DELETE FROM vaga WHERE idCliente = :id";
+                $sql = "DELETE FROM cliente WHERE idCliente = :idCliente";
 
                 $sql = $this->db->prepare($sql);
 
-                $sql->bindValue(":id", $url);
+                $sql->bindValue(":idCliente", $url);
 
                 $sql->execute();
 
@@ -90,9 +112,11 @@
 
             try {
 
-                $sql = "SELECT * FROM venda WHERE idCliente = {$url}";
+                $sql = "SELECT * FROM cliente WHERE idCliente = :idCliente";
 
                 $sql = $this->db->prepare($sql);
+
+                $sql->bindValue(":idCliente", $url);
 
                 $sql->execute();
 
@@ -119,15 +143,27 @@
 
             try {
 
-                $sql = "INSERT INTO doce (nome,descricao,imagem) VALUES (:nome, :descricao, :imagem)";
+                $sql = "INSERT INTO cliente (nomeMae, dataNascimento, logradouro, cep, bairro, estado, cidade, numero, complemento) VALUES (:nomeMae, :dataNascimento, :logradouro, :cep, :bairro, :estado, :cidade, :numero, :complemento)";
 
                 $sql = $this->db->prepare($sql);
 
-                /*foreach ($array as $valor => $campo) {
+                $sql->bindValue(":nomeMae", $obj->getNomeMae());
 
-                    $sql->bindValue(":" . $valor, $campo);
+                $sql->bindValue(":dataNascimento", $obj->getDataNascimento());
 
-                }*/
+                $sql->bindValue(":logradouro", $obj->getLogradouro());
+
+                $sql->bindValue(":cep", $obj->getCep());
+
+                $sql->bindValue(":bairro", $obj->getBairro());
+
+                $sql->bindValue(":estado", $obj->getEstado());
+
+                $sql->bindValue(":cidade", $obj->getCidade());
+
+                $sql->bindValue(":numero", $obj->getNumero());
+
+                $sql->bindValue(":complemento", $obj->getComplemento());
 
                 $sql->execute();
 

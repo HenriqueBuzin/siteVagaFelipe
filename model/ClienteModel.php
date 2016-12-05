@@ -1,6 +1,8 @@
 <?php
     class ClienteModel
     {
+        private $idCliente;
+
         private $nomeMae;
 
         private $dataNascimento;
